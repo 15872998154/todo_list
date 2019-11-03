@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" >
+	<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	
+</head>
+
+<body>
+ <!-- 导航 -->
+<div id="navigation" class="container">
+ <nav class="navbar navbar-default navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand active" href="add_item" ><span class="glyphicon glyphicon-th-list "  ></span>添加事项</a>
+        <a class="navbar-brand" href="list_item" ><span class="glyphicon glyphicon-th-list"></span>所有事项</a>
+        <a class="navbar-brand" href="uncomplete_item" ><span class="glyphicon glyphicon-th-list"></span>未完成事项</a>
+        <a class="navbar-brand" href="complete_item" ><span class="glyphicon glyphicon-th-list"></span>已完成事项</a>
+   </div>
+ </nav>
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

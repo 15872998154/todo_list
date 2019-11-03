@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}待办事项{% endblock %}
+
+{% block content %}
+
+
+
+
+<!-- todo列表 -->
+<div id="todo-list" class="container">
+ <table class="table table-striped">
+    <th>
+        
+        <td>标题</td>
+        <td>内容</td>
+        <td>创建时间</td>
+        <td>完成情况</td>
+        <td>删除</td>
+        <td>完成</td>
+    </th>
+    {% for todo in todo_list %}
+    <tr>
+        <td>{{ loop.index0 }}</td>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.description }}</td>
+        <td>{{ todo.date.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+        {% if todo.status == "Uncomplete" %}
+            <td class="text-danger">未完成</td>
+        {% elif todo.status == "Complete" %}
+            <td >已完成</td>
+        {% endif %}
+        <td><a href="list_item/delete_item?item_id={{todo.id}}" onClick="return confirm('sure?')"><span class="glyphicon glyphicon-remove"></span></a></td>
+        {% if todo.status == "Uncomplete" %}
+        <td><a href="list_item/update_complete_status?item_id={{todo.id}}" onClick="return confirm('sure?')"><span class="glyphicon glyphicon-ok"></span></a></td>
+        {% else %}
+        <td></td>
+        {% endif %}
+    </tr>
+   {% endfor %}
+ </table>
+</div>
+
+
+
+
+    
+{% endblock %}
+

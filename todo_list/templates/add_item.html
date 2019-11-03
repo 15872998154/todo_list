@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}添加待办事项{% endblock %}
+
+{% block content %}
+<div class="container">
+        <form action="" method="post" >
+        <!-- 用来实现在配置中激活的csrf保护 -->
+        {{ form.csrf_token }}
+
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title() }}
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description() }}
+        </p>
+        <p>
+            {{ form.tag() }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+{% endblock %}
