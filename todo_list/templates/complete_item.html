@@ -11,18 +11,20 @@
         <td>title</td>
         <td>内容</td>
         <td>创建时间</td>
+        <td>完成时间</td>
         <td>完成情况</td>
         <td>删除</td>
         <td>完成</td>
     </th>
     {% for todo in complete_items %}
-    <tr>
-        <td>{{ loop.index0 }}</td>
+    <tr class="info">
+        <td>{{ loop.index0 + 1}}</td>
         
         
         <td>{{ todo.title }}</td>
         <td>{{ todo.description }}</td>
-        <td>{{ todo.date }}</td>
+        <td>{{ todo.date.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+        <td>{{ todo.complete_time.strftime("%Y-%m-%d %H:%M:%S") }}</td>
         {% if todo.status == "Uncomplete" %}
             <td>未完成</td>
         {% elif todo.status == "Complete" %}

@@ -9,9 +9,9 @@ from todo_list.models import List
 def add_item():
     form = ListForm()
     if form.validate_on_submit():
-        db.create_all()
+        # db.create_all()
         # print("form.title" + form.data['title'])
-        transcation = List(title = form.data['title'], description = form.data['description'], status = form.data['tag'])
+        transcation = List(title = form.data['title'], description = form.data['description'], status = form.data['tag'], deadline = form.data['deadline'])
         
         db.session.add(transcation)
         db.session.commit()
