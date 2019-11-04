@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}添加待办事项{% endblock %}
+
+{% block content %}
+<div class="container " >
+    <div class="row" >
+        <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading heading-size" align="center">To-do-list</div>
+                  <div class="panel-body">
+                    <form  method="post" id="submit_order">
+                      {{ form.csrf_token }}  
+                      <div class="form-group" >
+                            <label for="title" >Title</label> <br>
+                            <input id="title" name="title" required type="text" value="{{modify_item.title}}">
+                      </div>
+                      <div class="form-group">
+                            <label for="description">Description</label> <br>
+                    <textarea id="description" name="description" required value="{{modify_item.description}}"> </textarea>
+                      </div>
+                      <div class="form-group">
+                          <label for="deadline">Deadline</label> <br>
+                            <input class="datepicker" id="deadline" name="deadline" type="date" value="{{modify_item.date}}">
+                      </div>
+                      <div class="form-group">
+                          <label for="tag">Status</label> <br>
+                            <select id="tag" name="tag" required>
+                              <option value="Uncomplete" 
+                              {% if modify_item.status == "Uncomplete" %} 
+                              selected = "selected"
+                              {%endif%}>Uncomplete</option>
+                              <option value="Complete" 
+                              {%if modify_item.status == "Complete" %} 
+                              selected = "selected"
+                              {%endif%}>Complete</option>
+                            </select>
+                      </div>
+                      
+                      
+                      
+                    </form>
+                   
+                  </div>
+                </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}
