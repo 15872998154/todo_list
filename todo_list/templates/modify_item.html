@@ -9,18 +9,22 @@
                   <div class="panel-heading heading-size" align="center">To-do-list</div>
                   <div class="panel-body">
                     <form  method="post" id="submit_order">
-                      {{ form.csrf_token }}  
+                      {{ form.csrf_token }}
+                      <input type="hidden" name="modify_item_id" 
+                      value="{{modify_item.id}}">  
                       <div class="form-group" >
                             <label for="title" >Title</label> <br>
                             <input id="title" name="title" required type="text" value="{{modify_item.title}}">
                       </div>
                       <div class="form-group">
                             <label for="description">Description</label> <br>
-                    <textarea id="description" name="description" required value="{{modify_item.description}}"> </textarea>
+                    <textarea id="description" name="description" required >{{modify_item.description}}
+                    </textarea>
                       </div>
                       <div class="form-group">
                           <label for="deadline">Deadline</label> <br>
-                            <input class="datepicker" id="deadline" name="deadline" type="date" value="{{modify_item.date}}">
+                            <input class="datepicker" id="deadline" name="deadline" type="date" 
+                            defaultValue="2018-3-1" required>
                       </div>
                       <div class="form-group">
                           <label for="tag">Status</label> <br>
@@ -34,6 +38,10 @@
                               selected = "selected"
                               {%endif%}>Complete</option>
                             </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="submit">submit</label> <br>
+                            <input class="btn btn-success" id="submit" name="submit" type="submit" value="submit">
                       </div>
                       
                       

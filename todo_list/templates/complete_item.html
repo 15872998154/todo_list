@@ -7,35 +7,37 @@
 <div id="todo-list" class="container">
  <table class="table table-striped">
     <th>
-        
         <td>title</td>
-        <td>内容</td>
-        <td>创建时间</td>
+        <td>description</td>
+        <td>creation time</td>
+        <td>deadline</td>
         <td>完成时间</td>
-        <td>完成情况</td>
-        <td>删除</td>
-        <td>完成</td>
+        <td>状态</td>
+        <td>操作一</td>
+        <td>操作二</td>
+        
     </th>
     {% for todo in complete_items %}
     <tr class="info">
         <td>{{ loop.index0 + 1}}</td>
-        
-        
+    
         <td>{{ todo.title }}</td>
         <td>{{ todo.description }}</td>
         <td>{{ todo.date.strftime("%Y-%m-%d %H:%M:%S") }}</td>
-        <td>{{ todo.complete_time.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+        <td>{{ todo.deadline.strftime("%Y-%m-%d") }}</td>
         {% if todo.status == "Uncomplete" %}
-            <td>未完成</td>
+            <td ></td>
+        {%else%}
+            <td>{{ todo.complete_time.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+        {% endif %}
+        {% if todo.status == "Uncomplete" %}
+            <td class="text-danger">uncomplete</td>
         {% elif todo.status == "Complete" %}
-            <td>已完成</td>
+            <td >complete</td>
         {% endif %}
-        <td><a href="list_item/delete_item?item_id={{todo.id}}" onClick="return confirm('sure?')"><span class="glyphicon glyphicon-remove"></span></a></td>
-        {% if todo.status == "Uncomplete" %}
-        <td><a href="list_item/complete_item?item_id={{todo.id}}" onClick="return confirm('sure?')"><span class="glyphicon glyphicon-ok"></span></a></td>
-        {% else %}
-        <td></td>
-        {% endif %}
+        <td><a class='btn btn-primary ' href="list_item/modify_item?item_id={{todo.id}}" >modify</a></td>
+        
+        <td><a class='btn btn-danger' href="list_item/delete_item?item_id={{todo.id}}" onClick="return confirm('sure?')">delete</a></td>
     </tr>
    {% endfor %}
  </table>

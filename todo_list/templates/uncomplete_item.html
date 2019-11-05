@@ -8,11 +8,13 @@
  <table class="table table-striped">
     <th>
         <td>title</td>
-        <td>内容</td>
-        <td>创建时间</td>
-        <td>完成情况</td>
-        <td>删除</td>
-        <td>完成</td>
+        <td>description</td>
+        <td>creation time</td>
+        <td>deadline</td>
+        <td>status</td>
+        <td>operation one</td>
+        <td>operation two</td>
+        <td>operation three</td>
     </th>
     {% for todo in uncomplete_items %}
     <tr class="danger">
@@ -20,19 +22,36 @@
         <td>{{ todo.title }}</td>
         <td>{{ todo.description }}</td>
         <td>{{ todo.date.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+        <td>{{ todo.deadline.strftime("%Y-%m-%d") }}</td>
+        
         {% if todo.status == "Uncomplete" %}
-            <td>未完成</td>
+            <td class="text-danger">uncomplete</td>
         {% elif todo.status == "Complete" %}
-            <td>已完成</td>
+            <td >complete</td>
         {% endif %}
-        <td><a href="list_item/delete_item?item_id={{todo.id}}" onClick="return confirm('sure?')"><span class="glyphicon glyphicon-remove"></span></a></td>
+
         {% if todo.status == "Uncomplete" %}
-        <td><a href="list_item/complete_item?item_id={{todo.id}}" onClick="return confirm('sure?')"><span class="glyphicon glyphicon-ok"></span></a></td>
+        <td><a class='btn btn-primary' href="list_item/update_complete_status?item_id={{todo.id}}" onClick="return confirm('sure?')">uncomplete</a></td>
         {% else %}
         <td></td>
         {% endif %}
+        <td><a class='btn btn-primary ' href="list_item/modify_item?item_id={{todo.id}}" >modify</a></td>
+        
+        <td><a class='btn btn-danger' href="list_item/delete_item?item_id={{todo.id}}" onClick="return confirm('sure?')">delete</a></td>
     </tr>
    {% endfor %}
  </table>
+ <form  method="post" action="/deadline_search" >
+    {{ deadline_form.csrf_token }}
+      <div class="form-group" >
+            {{ deadline_form.deadline(class='datepicker') }}
+            {{ deadline_form.submit() }}
+        </div>
+            
+                      
+                      
+                      
+    </form>
+
 </div>
 {% endblock %}

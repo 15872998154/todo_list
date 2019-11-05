@@ -5,59 +5,43 @@
 
 <!-- todo列表 -->
 <div id="todo-list" class="container">
- <table class="table table-striped">
-    <th>
-        
-        <td>标题</td>
-        <td>内容</td>
-        <td>创建时间</td>
-        <td>最后期限</td>
-        <td>完成时间</td>
-        <td>完成情况</td>
-        <td>操作一</td>
-        <td>操作二</td>
-        <td>操作三</td>
-        
-    </th>
-    {% for todo in todo_list %}
+    <table class="table table-striped">
+        <th>
+            <td>title</td>
+            <td>description</td>
+            <td>creation time</td>
+            <td>deadline</td>
+            <td>status</td>
+            <td>operation one</td>
+            <td>operation two</td>
+            <td>operation three</td>
+        </th>
+        {% for todo in todo_list %}
+        <tr {% if todo.status == "Uncomplete" %} class="danger" 
+            {% else %} class="info" {% endif %}>
+            <td>{{ loop.index0 + 1}}</td>
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.description|truncate(length=15,killwords=False) }}</td>
+            <td>{{ todo.date.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+            <td>{{ todo.deadline.strftime("%Y-%m-%d") }}</td>
+            
+            {% if todo.status == "Uncomplete" %}
+                <td class="text-danger">uncomplete</td>
+            {% elif todo.status == "Complete" %}
+                <td >complete</td>
+            {% endif %}
 
-    <tr {% if todo.status == "Uncomplete" %} class="danger" 
-    {% else %} class="info" {% endif %}>
-        <td>{{ loop.index0 + 1}}</td>
-        <td>{{ todo.title }}</td>
-        <td>{{ todo.description }}</td>
-        <td>{{ todo.date.strftime("%Y-%m-%d %H:%M:%S") }}</td>
-        <td>{{ todo.deadline.strftime("%Y-%m-%d") }}</td>
-        {% if todo.status == "Uncomplete" %}
-            <td ></td>
-        {%else%}
-            <td>{{ todo.complete_time.strftime("%Y-%m-%d %H:%M:%S") }}</td>
-        {% endif %}
-        {% if todo.status == "Uncomplete" %}
-            <td class="text-danger">未完成</td>
-        {% elif todo.status == "Complete" %}
-            <td >已完成</td>
-        {% endif %}
-
-        {% if todo.status == "Uncomplete" %}
-        <td><a class='btn btn-primary' href="list_item/update_complete_status?item_id={{todo.id}}" onClick="return confirm('sure?')">完成</a></td>
-        {% else %}
-        <td></td>
-        {% endif %}
-        <td><a class='btn btn-primary ' href="list_item/modify_item?item_id={{todo.id}}" >修改</a></td>
-        
-        <td><a class='btn btn-danger' href="list_item/delete_item?item_id={{todo.id}}" onClick="return confirm('sure?')">删除</a></td>
-        
-        
-        
-    </tr>
-   {% endfor %}
- </table>
+            {% if todo.status == "Uncomplete" %}
+            <td><a class='btn btn-primary' href="list_item/update_complete_status?item_id={{todo.id}}" onClick="return confirm('sure?')">complete</a></td>
+            {% else %}
+            <td></td>
+            {% endif %}
+            <td><a class='btn btn-primary ' href="list_item/modify_item?item_id={{todo.id}}" >modify</a></td>
+            <td><a class='btn btn-danger' href="list_item/delete_item?item_id={{todo.id}}" onClick="return confirm('sure?')">delete</a></td>
+        </tr>
+       {% endfor %}
+    </table>
 </div>
-
-
-
-
-    
+ 
 {% endblock %}
 

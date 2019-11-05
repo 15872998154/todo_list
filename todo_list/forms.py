@@ -10,3 +10,7 @@ class ListForm(FlaskForm):
     tag = SelectField('Status', choices = [('Uncomplete','Uncomplete'), ('Complete','Complete')],validators=[DataRequired()])
     deadline = DateField('Deadline', format='%Y-%m-%d')
     submit = SubmitField('submit', render_kw={'class': 'btn btn-success'})
+
+class DeadlineForm(FlaskForm):
+    deadline = DateField('Deadline', format='%Y-%m-%d')
+    submit = SubmitField('query by deadline', render_kw={'class': 'btn btn-success'})
