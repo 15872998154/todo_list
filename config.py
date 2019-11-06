@@ -1,10 +1,8 @@
 import os
 
-
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 #数据库连接代码
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 #数据迁移文件保存位置
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 #以下两条不一定要
