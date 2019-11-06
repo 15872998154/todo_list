@@ -1,0 +1,36 @@
+A design document in pdf format, containing the following
+– a wireframe model of each page layout.
+– a short description justifying your choice of layout.
+– a short description of any models implemented in your web application.
+– an evaluation of your implementation.
+– any references that are required for the content you have used.
+
+1.
+2.页面顶部为导航.中部为内容部分，使用到了表格、表单、导航、字体样式以及按钮等
+3.后台业务层采用flask 结合sqlalchemy 和 flask_wtf实现数据操作与简化表单操作，数据库选用sqlite, 前端bootstrap进行布局
+实现的功能有：
+增加待办事项
+修改待办事项
+删除待办事项
+查看待办事项
+查询未完成事项
+查询已完成事项
+根据deadline查询未完成待办事项
+
+4.后台业务层采用flask 结合sqlalchemy 和 flask_wtf实现数据操作与简化表单操作，数据库选用sqlite, 前端bootstrap进行布局
+实现的功能有：
+增加待办事项
+修改待办事项
+删除待办事项
+查看待办事项
+查询未完成事项
+查询已完成事项
+根据deadline查询未完成待办事项
+
+5.参考:
+flask官方使用手册
+sqlalchemy文档
+Python官方文档
+bootstrap官网
+StackOverFlow
+github
